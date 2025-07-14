@@ -72,6 +72,117 @@ lagunkoi/
 - 민감한 작업은 서버 사이드에서 처리하세요
 - 환경 변수는 `.gitignore`에 포함되어 있는지 확인하세요
 
+  ## 🚀 실행 방법
+
+### 1. 사전 요구사항
+- Node.js (v18 이상)
+- Yarn 패키지 매니저
+- Expo CLI
+- Android Studio (Android 개발 시)
+- Xcode (iOS 개발 시, macOS만)
+
+### 2. 프로젝트 설정
+
+```bash
+# 저장소 클론
+git clone https://github.com/FrogRim/Lagunkoi.git
+cd lagunkoi
+
+# 의존성 설치
+yarn install
+
+# Expo CLI 설치 (전역)
+npm install -g @expo/cli
+```
+
+### 3. 환경 변수 설정
+
+`.env` 파일을 생성하고 다음 내용을 추가하세요:
+
+```env
+EXPO_PUBLIC_SUPABASE_URL=your_supabase_project_url
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+OPENAI_API_KEY=your_openai_api_key
+```
+
+### 4. 개발 서버 실행
+
+```bash
+# Expo 개발 서버 시작
+yarn start
+# 또는
+npx expo start
+
+# 특정 플랫폼으로 바로 실행
+yarn android    # Android 에뮬레이터/기기
+yarn ios        # iOS 시뮬레이터 (macOS만)
+yarn web        # 웹 브라우저
+```
+
+### 5. 빌드 및 배포
+
+```bash
+# Android APK 빌드
+npx expo build:android
+
+# iOS IPA 빌드 (macOS만)
+npx expo build:ios
+
+# 웹 빌드
+npx expo build:web
+```
+
+### 6. 데이터베이스 설정
+
+Supabase 프로젝트에서 다음 테이블들이 필요합니다:
+- `users` - 사용자 정보
+- `schedules` - 일정 데이터
+- `routines` - 루틴 데이터
+- `achievements` - 성취 데이터
+- `goals` - 목표 데이터
+
+데이터베이스 스키마는 `database/schema.sql`을 참조하세요.
+
+### 7. 문제 해결
+
+#### 의존성 충돌 시
+```bash
+# 패키지 호환성 확인 및 자동 수정
+npx expo install --fix
+
+# 캐시 정리
+yarn cache clean
+expo r -c
+```
+
+#### Android 빌드 오류 시
+```bash
+cd android
+./gradlew clean
+cd ..
+```
+
+### 8. 개발 도구
+
+- **Expo DevTools**: 개발 서버 실행 시 자동으로 열림
+- **React Native Debugger**: Chrome DevTools 연동
+- **Flipper**: 네이티브 디버깅 (선택사항)
+
+### 📱 지원 플랫폼
+
+- ✅ Android (API 21+)
+- ✅ iOS (iOS 13+)
+- ✅ Web (모던 브라우저)
+
+### 🔧 주요 기술 스택
+
+- **Frontend**: React Native + Expo
+- **상태 관리**: Zustand
+- **데이터베이스**: Supabase (PostgreSQL)
+- **AI**: OpenAI GPT API
+- **스타일링**: React Native StyleSheet + Design System
+- **타입스크립트**: 전체 프로젝트 타입 안정성
+
 ## 📝 개발 가이드
 
 ### 새로운 페이지 추가
@@ -95,6 +206,8 @@ export const useNewStore = create((set) => ({
 - expo-calendar는 현재 사용하지 않음 (권한 이슈)
 - 음성 인식은 모의 구현 상태
 - 외부 캘린더 연동은 추가 개발 필요
+
+
 
 ## 📄 라이선스
 
