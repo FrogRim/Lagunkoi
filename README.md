@@ -1,97 +1,101 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Lagunkoi - AI 라이프스타일 관리 앱
 
-# Getting Started
+라이프스타일 유형에 맞춘 개인화된 일정 관리와 루틴 추천을 제공하는 AI 기반 React Native 앱입니다.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 주요 기능
 
-## Step 1: Start Metro
+- **AI 챗봇**: 자연스러운 대화로 일정과 루틴 관리
+- **라이프스타일 분석**: 개인 성향에 맞춘 맞춤형 추천
+- **스마트 캘린더**: 음성 입력 및 외부 캘린더 연동
+- **루틴 관리**: 습관 형성을 위한 체계적인 관리
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📱 기술 스택
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **Frontend**: React Native + Expo
+- **Navigation**: Expo Router (파일 기반 라우팅)
+- **State Management**: Zustand
+- **Styling**: Custom Design System
+- **Backend**: Supabase
+- **AI**: OpenAI API
 
-```sh
-# Using npm
+## 🛠️ 설치 및 실행
+
+### 1. 의존성 설치
+```bash
+npm install --legacy-peer-deps
+```
+
+### 2. 환경 변수 설정
+```bash
+cp env.example .env
+# .env 파일을 열어 필요한 키값들을 입력하세요
+```
+
+### 3. 개발 서버 실행
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+### 4. 플랫폼별 실행
+- iOS: `i` 키 입력
+- Android: `a` 키 입력
+- Web: `w` 키 입력
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 📁 프로젝트 구조
 
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```
+lagunkoi/
+├── app/                    # Expo Router 페이지
+│   ├── (tabs)/            # 탭 네비게이션
+│   ├── (auth)/            # 인증 관련 페이지
+│   └── onboarding/        # 온보딩 플로우
+├── components/            # 재사용 가능한 컴포넌트
+├── design-system/         # 디자인 토큰 및 기본 컴포넌트
+├── services/              # API 및 외부 서비스
+├── stores/                # Zustand 상태 관리
+├── hooks/                 # 커스텀 훅
+└── utils/                 # 유틸리티 함수
 ```
 
-### iOS
+## 🎨 디자인 시스템
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+프로젝트는 일관된 UI/UX를 위한 자체 디자인 시스템을 포함합니다:
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+- **Typography**: 계층적 텍스트 스타일
+- **Colors**: 라이트/다크 테마 지원
+- **Spacing**: 일관된 여백 시스템
+- **Components**: Button, Card, Typography 등
 
-```sh
-bundle install
+## 🔒 보안 주의사항
+
+- API 키는 절대 클라이언트 코드에 직접 포함하지 마세요
+- 민감한 작업은 서버 사이드에서 처리하세요
+- 환경 변수는 `.gitignore`에 포함되어 있는지 확인하세요
+
+## 📝 개발 가이드
+
+### 새로운 페이지 추가
+```typescript
+// app/새페이지.tsx
+export default function NewPage() {
+  return <View>...</View>
+}
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+### 상태 관리
+```typescript
+// stores/newStore.ts
+export const useNewStore = create((set) => ({
+  // 상태와 액션 정의
+}))
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 🐛 알려진 이슈
 
-```sh
-# Using npm
-npm run ios
+- expo-calendar는 현재 사용하지 않음 (권한 이슈)
+- 음성 인식은 모의 구현 상태
+- 외부 캘린더 연동은 추가 개발 필요
 
-# OR using Yarn
-yarn ios
-```
+## 📄 라이선스
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+이 프로젝트는 개인 사용 목적으로 개발되었습니다. 
